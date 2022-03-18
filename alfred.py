@@ -2,9 +2,8 @@
 import itertools
 import os
 import plistlib
-import unicodedata
 import sys
-
+import unicodedata
 from xml.etree.ElementTree import Element, SubElement, tostring
 
 """
@@ -17,8 +16,9 @@ UNESCAPE_CHARACTERS = u""" ;()"""
 
 _MAX_RESULTS_DEFAULT = 9
 
-preferences = plistlib.readPlist('info.plist')
-bundleid = preferences['bundleid']
+with open('info.plist', 'rb') as fp:
+    preferences = plistlib.load(fp)
+    bundleid = preferences['bundleid']
 
 class Item(object):
     @classmethod
